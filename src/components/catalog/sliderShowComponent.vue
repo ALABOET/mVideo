@@ -9,7 +9,7 @@
 <script>
 export default {
   name: "sliderShowComponent",
-  props: ['photos', 'image'],
+  props: ['photos', 'image', 'index'],
 
   data() {
     return {
