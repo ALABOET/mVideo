@@ -11,6 +11,7 @@
           {{ elem.description }} <span @click="deleteItem(index)"
                                        class="sx-cart-component-full-title-items-delete">X</span>
         </div>
+        <button @click="clearItemsInCart">Очистить корзину</button>
         <button @click="purchase">Купить</button>
       </div>
     </div>
@@ -34,7 +35,7 @@ export default {
     ...mapState(['itemsInCart', 'addedProducts']),
   },
   methods: {
-    ...mapMutations(['deleteElement', 'completePurchase']),
+    ...mapMutations(['deleteElement', 'completePurchase', 'clearItemsInCart']),
     deleteItem(item) {
       this.deleteElement(item)
     },

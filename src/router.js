@@ -4,6 +4,7 @@ import catalogListComponent from "@/components/catalog/catalogListComponent";
 import cartComponent from "@/components/cart/cartComponent";
 import purchaseComponent from "@/components/cart/purchaseComponent";
 import profileComponent from "@/components/profile/ProfileComponent";
+import favouriteComponent from "@/components/favourite/favouriteComponent";
 
 export default createRouter({
     history: createWebHistory(),
@@ -27,6 +28,10 @@ export default createRouter({
         {
             path: '/profile',
             component: profileComponent
+        },
+        {
+            path: '/favourite',
+            component: favouriteComponent
         },
     ]
 })

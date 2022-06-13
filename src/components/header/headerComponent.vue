@@ -66,7 +66,7 @@ export default {
       buttons: [
         {title: '0', icon: BonusesLogo},
         {title: '', icon: ProfileLogo},
-        {title: 'Сравнение', icon: StatsLogo},
+        {title: 'Каталог', icon: StatsLogo},
         {title: 'Избранное', icon: HeartLogo},
         {title: 'Корзина', icon: CartLogo}],
     }

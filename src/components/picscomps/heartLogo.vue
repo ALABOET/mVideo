@@ -1,8 +1,11 @@
 <template>
-  <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-       y="0px"
-       width="612px" height="612px" viewBox="0 0 612 612" style="enable-background:new 0 0 612 612; width: 40px; height: 40px"
-       xml:space="preserve">
+    <router-link to="/favourite">
+        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+             x="0px"
+             y="0px"
+             width="612px" height="612px" viewBox="0 0 612 612"
+             style="enable-background:new 0 0 612 612; width: 40px; height: 40px"
+             xml:space="preserve">
 <g>
 	<g id="_x31__39_">
 		<g>
@@ -14,44 +17,44 @@
 		</g>
 	</g>
 </g>
-    <g>
+            <g>
 </g>
-    <g>
+            <g>
 </g>
-    <g>
+            <g>
 </g>
-    <g>
+            <g>
 </g>
-    <g>
+            <g>
 </g>
-    <g>
+            <g>
 </g>
-    <g>
+            <g>
 </g>
-    <g>
+            <g>
 </g>
-    <g>
+            <g>
 </g>
-    <g>
+            <g>
 </g>
-    <g>
+            <g>
 </g>
-    <g>
+            <g>
 </g>
-    <g>
+            <g>
 </g>
-    <g>
+            <g>
 </g>
-    <g>
+            <g>
 </g>
 </svg>
-
+    </router-link>
 </template>
 
 <script>
-export default {
-  name: "heartLogo"
-}
+    export default {
+        name: "heartLogo"
+    }
 </script>
 
 <style scoped>
