@@ -1,7 +1,7 @@
 <template>
     <div class="sx-slider">
-        <div v-for="(photo, index) in photos" :key="photo.id" class="sx-slider-photos">
-            <img class="sx-slider-photos-photo" :src="image[index].img">
+        <div class="sx-slider-photos">
+            <a href="https://www.mvideo.ru/" target="_blank"><img class="sx-slider-photos-photo" :src="image.img"></a>
         </div>
     </div>
 </template>
@@ -12,8 +12,7 @@
         props: ['photos', 'image', 'index'],
 
         data() {
-            return {
-            }
+            return {}
         },
         methods: {}
     }
