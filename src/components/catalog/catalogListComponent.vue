@@ -52,16 +52,6 @@ export default {
           name: 'img2',
           img: 'https://toshop.ru/pictures/action_5189.jpg'
         },
-        {
-          id: 3,
-          name: 'img3',
-          img: 'https://katalognew.ru/images/catalogs/images/mvideo_akciya_prodolzhaem_zelenuyu_pyatnicu_00001.jpg'
-        },
-        {
-          id: 4,
-          name: 'img4',
-          img: 'https://media.proshoper.ru/catalogs/2017/04/25/33254/mvideo_sankt-peterburg-1.jpg'
-        },
       ]
     }
   },

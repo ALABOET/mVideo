@@ -62,7 +62,7 @@ export default {
     text-align: center;
     height: 70px;
     border-radius: 20px;
-    background: red;
+    background: rgba(255, 0, 0, 0.9);
     padding: 10px;
 
     &-text {
