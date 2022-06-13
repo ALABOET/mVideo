@@ -23,11 +23,12 @@
         position: relative;
 
         &-photos {
+            margin: 0 auto;
+            width: 40%;
 
             &-photo {
                 display: block;
-                margin: 20px auto;
-                width: 55%;
+                width: 100%;
             }
 
             &-control-before, &-control-after {

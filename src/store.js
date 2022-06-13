@@ -7,6 +7,7 @@ export default createStore({
             isCartModalShown: false,
             themeMode: 'Light',
             addedProducts: [],
+            favouriteProducts: [],
             userName: '',
             userMail: '',
             isLoginModalOpen: false,
@@ -23,7 +24,7 @@ export default createStore({
             state.isLoginModalOpen = !state.isLoginModalOpen;
         },
         toggleLoggedState(state) {
-          state.isLoggedIn = !state.isLoggedIn
+            state.isLoggedIn = !state.isLoggedIn
         },
         addItemToCart(state, payload) {
             state.itemsInCart++;
@@ -31,6 +32,10 @@ export default createStore({
             state.addedProducts.push(payload)
             setTimeout(() => state.isCartModalShown = false, 5000)
             localStorage.setItem('productsNumber', state.itemsInCart)
+        },
+
+        addItemToFavourite(state, payload) {
+            state.favouriteProducts.push(payload)
         },
         setUserName(state, payload) {
             state.userName = payload
@@ -42,6 +47,14 @@ export default createStore({
             state.addedProducts.splice(payload, 1)
             state.itemsInCart--;
             localStorage.setItem('productsNumber', state.itemsInCart)
+        },
+        clearItemsInCart(state) {
+            state.addedProducts.length = 0;
+            state.itemsInCart = 0;
+            localStorage.setItem('productsNumber', state.itemsInCart)
+        },
+        clearItemsInFavourite(state) {
+          state.favouriteProducts.length = 0;
         },
         completePurchase(state) {
             state.addedProducts.length = 0;

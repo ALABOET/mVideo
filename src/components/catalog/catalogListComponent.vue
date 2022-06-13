@@ -28,7 +28,7 @@
         },
         computed: {
             getRandomPic() {
-                return Math.floor(Math.random() * (this.carouselPhotos.length - 0)) + 0;
+                return Math.floor(Math.random() * this.carouselPhotos.length);
             }
         },
         data() {
