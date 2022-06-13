@@ -67,7 +67,7 @@ export default {
 
   &-content {
     width: 70%;
-    margin: 100px auto;
+    margin: 50px auto;
   }
 }
 
@@ -76,7 +76,6 @@ export default {
 
     &-content {
       width: 80%;
-      margin: 100px auto;
     }
   }
 }
