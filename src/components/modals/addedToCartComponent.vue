@@ -25,6 +25,7 @@ export default {
 <style lang="scss">
 .fade-leave-to {
   opacity: 0;
+  transform: translateY(-50px);
 }
 
 .fade-enter-from {
@@ -45,9 +46,25 @@ export default {
   opacity: 1;
 }
 
-.fade-leave-to {
-  transform: translateY(-50px);
+.zoom-leave-to {
+  opacity: 0;
 }
+
+.zoom-enter-from {
+  opacity: 0;
+}
+
+.zoom-enter-active {
+  transition: all .5s ease;
+}
+
+.zoom-leave-active {
+  transition: all .5s ease;
+}
+
+.zoom-enter-to {
+}
+
 
 
 .sx-cart-modal {
