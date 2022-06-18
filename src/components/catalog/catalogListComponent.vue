@@ -5,10 +5,43 @@
     <slider-show-component v-if="isLoaded" :photos="carouselPhotos" :image="carouselPhotos[getRandomPic]"/>
     <div v-if="isLoaded" class="sx-catalog-list">
         <div class="sx-catalog-list-title">Самые просматриваемые</div>
-        <div class="sx-catalog-list-item">
-            <div class="sx-catalog-list-item-elem" v-for="item in items" :key="item">
-                <item-component :description="item.description" :rating="item.rating" :price="item.price"
-                                :reviews="item.reviews"/>
+        <div>
+            <div class="sx-catalog-list-sorting" @click="openSortingWindow">Сортировка</div>
+            <transition name="zoom">
+                <div class="sx-catalog-list-sorted" v-if="isSortingShown">
+                    <div class="sx-catalog-list-sorted-list" @click="sortByPrice">Сортировать по цене
+                        {{!sortByMostExpensive?
+                        '↑' :
+                        '↓'}}
+                    </div>
+                    <div class="sx-catalog-list-sorted-list" @click="sortByRating">Сортировать по рейтингу
+                        {{!sortByMostRating?
+                        '↑' :
+                        '↓'}}
+                    </div>
+                </div>
+            </transition>
+        </div>
+        <div>
+            <div v-if="!hasSortingStarted" class="sx-catalog-list-item">
+                <div class="sx-catalog-list-item-elem" v-for="item in items" :key="item">
+                    <item-component :description="item.description" :rating="item.rating" :price="item.price"
+                                    :reviews="item.reviews"/>
+                </div>
+            </div>
+            <div v-if="hasSortingStarted && isSortedByPrice" class="sx-catalog-list-item">
+                <div class="sx-catalog-list-item-elem" v-for="sortedItem in sortedByPriceItems" :key="sortedItem">
+                    <item-component :description="sortedItem.description" :rating="sortedItem.rating"
+                                    :price="sortedItem.price"
+                                    :reviews="sortedItem.reviews"/>
+                </div>
+            </div>
+            <div v-if="hasSortingStarted && isSortedByRating" class="sx-catalog-list-item">
+                <div class="sx-catalog-list-item-elem" v-for="sortedItem in sortedByRatingItems" :key="sortedItem">
+                    <item-component :description="sortedItem.description" :rating="sortedItem.rating"
+                                    :price="sortedItem.price"
+                                    :reviews="sortedItem.reviews"/>
+                </div>
             </div>
         </div>
     </div>
@@ -34,18 +67,26 @@
         data() {
             return {
                 isLoaded: false,
+                hasSortingStarted: false,
+                sortByMostExpensive: false,
+                sortByMostRating: false,
+                isSortedByPrice: false,
+                isSortedByRating: false,
+                isSortingShown: false,
                 items: [
-                    {description: 'iPhone 13 Max 256GB onix', rating: '5', reviews: '22 отзыва', price: '7990'},
-                    {description: 'iPhone 12 64GB black', rating: '4,5', reviews: '7 отзывов', price: '45990'},
-                    {description: 'iPhone 11 128GB red', rating: '4,6', reviews: '4 отзыва', price: '25290'},
-                    {description: 'Samsung A12 32GB black', rating: '3,9', reviews: '4 отзыва', price: '13990'},
-                    {description: 'Samsung A14 64GB white', rating: '3,9', reviews: '1 отзыв', price: '33700'},
-                    {description: 'Samsung Galaxy 2 8GB black', rating: '2,5', reviews: '124 отзыв', price: '323990'},
+                    {description: 'iPhone 13 Max 256GB', rating: '4.9', reviews: '22 отзыва', price: '79900'},
+                    {description: 'iPhone 12 64GB', rating: '4.5', reviews: '7 отзывов', price: '45990'},
+                    {description: 'iPhone 11 128GB', rating: '4.6', reviews: '4 отзыва', price: '25290'},
+                    {description: 'Samsung A12 32GB', rating: '3.9', reviews: '4 отзыва', price: '13990'},
+                    {description: 'Samsung A14 64GB', rating: '3.9', reviews: '1 отзыв', price: '33700'},
+                    {description: 'Samsung Galaxy 2 8GB', rating: '2.5', reviews: '124 отзыв', price: '323990'},
                     {description: 'POCO 10X', rating: '4', reviews: '11 отзыв', price: '14990'},
-                    {description: 'Realme 8', rating: '4.9', reviews: '3 отзыва', price: '14000'},
-                    {description: 'Fly IQ 440 Energie', rating: '5', reviews: '1 отзыв', price: '8990'},
+                    {description: 'Realme 8', rating: '4.75', reviews: '3 отзыва', price: '14000'},
+                    {description: 'Fly IQ 440 Energie', rating: '4.95', reviews: '1 отзыв', price: '8990'},
                     {description: 'Fly IQ 441 Radiant', rating: '5', reviews: '10 отзывов', price: '9990'},
-                    {description: 'Honor 8X', rating: '4,3', reviews: '14 отзывов', price: '17890'}],
+                    {description: 'Honor 8X', rating: '4.3', reviews: '14 отзывов', price: '17890'}],
+                sortedByPriceItems: [],
+                sortedByRatingItems: [],
                 carouselPhotos: [
                     {
                         id: 1,
@@ -70,6 +111,44 @@
                 ]
             }
         },
+        methods: {
+            sortByPrice() {
+                this.hasSortingStarted = true;
+                this.isSortedByPrice = true;
+                this.isSortedByRating = false;
+                this.sortByMostExpensive = !this.sortByMostExpensive;
+                if (this.sortByMostExpensive) {
+                    this.sortedByPriceItems = this.items.sort((a, b) => {
+                        return b.price - a.price;
+                    });
+                }
+                if (!this.sortByMostExpensive) {
+                    this.sortedByPriceItems = this.items.sort((a, b) => {
+                        return a.price - b.price;
+                    });
+                }
+
+            },
+            sortByRating() {
+                this.isSortedByRating = true;
+                this.hasSortingStarted = true;
+                this.isSortedByPrice = false;
+                this.sortByMostRating = !this.sortByMostRating;
+                if (this.sortByMostRating) {
+                    this.sortedByRatingItems = this.items.sort((a, b) => {
+                        return b.rating - a.rating;
+                    });
+                }
+                if (!this.sortByMostRating) {
+                    this.sortedByRatingItems = this.items.sort((a, b) => {
+                        return a.rating - b.rating;
+                    });
+                }
+            },
+            openSortingWindow() {
+                this.isSortingShown = !this.isSortingShown;
+            }
+        }
     }
 </script>
 
@@ -89,6 +168,26 @@
 
         &-title {
             margin-bottom: 20px;
+        }
+
+        &-sorting {
+            cursor: pointer;
+        }
+
+        &-sorted {
+            padding: 15px 5px;
+            box-shadow: 0 0 5px black;
+            border-radius: 4px;
+            width: 250px;
+
+            &-list {
+                font-size: 20px;
+                height: 30px;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
         }
 
         &-item {

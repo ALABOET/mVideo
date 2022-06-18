@@ -1,11 +1,12 @@
 <template>
-    <router-link to="/favourite">
-        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-             x="0px"
-             y="0px"
-             width="612px" height="612px" viewBox="0 0 612 612"
-             style="enable-background:new 0 0 612 612; width: 40px; height: 40px"
-             xml:space="preserve">
+    <div style="text-align: center">
+        <router-link to="/favourite">
+            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                 x="0px"
+                 y="0px"
+                 width="612px" height="612px" viewBox="0 0 612 612"
+                 style="enable-background:new 0 0 612 612; width: 40px; height: 40px"
+                 xml:space="preserve">
 <g>
 	<g id="_x31__39_">
 		<g>
@@ -17,43 +18,50 @@
 		</g>
 	</g>
 </g>
-            <g>
+                <g>
 </g>
-            <g>
+                <g>
 </g>
-            <g>
+                <g>
 </g>
-            <g>
+                <g>
 </g>
-            <g>
+                <g>
 </g>
-            <g>
+                <g>
 </g>
-            <g>
+                <g>
 </g>
-            <g>
+                <g>
 </g>
-            <g>
+                <g>
 </g>
-            <g>
+                <g>
 </g>
-            <g>
+                <g>
 </g>
-            <g>
+                <g>
 </g>
-            <g>
+                <g>
 </g>
-            <g>
+                <g>
 </g>
-            <g>
+                <g>
 </g>
 </svg>
-    </router-link>
+        </router-link>
+        {{favouriteProducts.length>0? '' : '(пусто)'}}
+    </div>
 </template>
 
 <script>
+    import {mapState} from "vuex"
+
     export default {
-        name: "heartLogo"
+        name: "heartLogo",
+        computed: {
+            ...mapState(['favouriteProducts'])
+        },
     }
 </script>
 
