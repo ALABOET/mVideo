@@ -1,8 +1,8 @@
 <template>
   <div class="sx-cart-component">
-    <div v-if="itemsInCart > 0" class="sx-cart-component-full">
+    <div v-if="addedProducts.length > 0" class="sx-cart-component-full">
       <div class="sx-cart-component-full-title">
-        <span>Товары в корзине: {{ itemsInCart }}</span>
+        <span>Товары в корзине: {{ addedProducts.length }}</span>
         <br/>
         <router-link to="/catalog">
           В каталог

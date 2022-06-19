@@ -13,7 +13,7 @@
         />
         <div class="sx-header-logo-logos-counter"
              :class="{'counter-dark': themeMode === 'Dark'}">
-          {{ element.title === 'Корзина' ? itemsInCart : '' }}
+          {{ element.title === 'Корзина' ? addedProducts.length : element.title === 'Избранное' ? favouriteProducts.length : '' }}
         </div>
       </div>
     </div>
@@ -44,7 +44,7 @@ export default {
     StepLogoComponent, SearchComponent, CatalogComponent, mvideoLogo
   },
   computed: {
-    ...mapState(['itemsInCart', 'userName', 'themeMode'])
+    ...mapState(['itemsInCart', 'userName', 'themeMode', 'addedProducts', 'favouriteProducts'])
   },
   methods: {
     pushToCart() {

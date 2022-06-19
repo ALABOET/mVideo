@@ -50,7 +50,6 @@
 </g>
 </svg>
         </router-link>
-        {{favouriteProducts.length>0? '' : '(пусто)'}}
     </div>
 </template>
 

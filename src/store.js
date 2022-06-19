@@ -34,6 +34,14 @@ export default createStore({
             localStorage.setItem('productsNumber', state.itemsInCart)
         },
 
+        moveItemFromFavouriteToCart(state) {
+            state.isCartModalShown = true;
+            setTimeout(() => state.isCartModalShown = false, 5000)
+            state.favouriteProducts.forEach((elem) => {
+                state.addedProducts.push(elem)
+            })
+        },
+
         addItemToFavourite(state, payload) {
             state.favouriteProducts.push(payload)
         },
@@ -48,13 +56,16 @@ export default createStore({
             state.itemsInCart--;
             localStorage.setItem('productsNumber', state.itemsInCart)
         },
+        deleteFavouriteElement(state, payload) {
+            state.favouriteProducts.splice(payload, 1)
+        },
         clearItemsInCart(state) {
             state.addedProducts.length = 0;
             state.itemsInCart = 0;
             localStorage.setItem('productsNumber', state.itemsInCart)
         },
         clearItemsInFavourite(state) {
-          state.favouriteProducts.length = 0;
+            state.favouriteProducts.length = 0;
         },
         completePurchase(state) {
             state.addedProducts.length = 0;
