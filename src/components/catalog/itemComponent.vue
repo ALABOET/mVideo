@@ -1,11 +1,18 @@
 <template>
     <div class="sx-item">
-        <div class="sx-item-photo">
-            <phone-logo/>
+        <div class="sx-item-content" @click="showPopup">
+            <div class="sx-item-content-photo">
+                <phone-logo/>
+            </div>
+            <div class="sx-item-content-description">{{ name }} {{isPopupShown? '↑' : '↓'}}
+            </div>
+            <transition name="zoom">
+                <div class="sx-item-content-popup" v-if="isPopupShown">
+                    <div class="sx-item-content-popup-rate">{{ rating }}★ {{ reviews }}</div>
+                    <div class="sx-item-content-popup-price">{{ price }} рублей</div>
+                </div>
+            </transition>
         </div>
-        <div class="sx-item-description">{{ description }}</div>
-        <div class="sx-item-rate">{{ rating }}★ {{ reviews }}</div>
-        <div class="sx-item-price">{{ price }} рублей</div>
         <button @click="addClicked">Добавить в корзину</button>
         <div class="sx-item-favourite" @click="favouriteClicked">❤</div>
     </div>
@@ -18,15 +25,37 @@
     export default {
         name: "itemComponent",
         components: {PhoneLogo},
-        props: ['description', 'rating', 'reviews', 'price'],
+        props: {
+            name: {
+                type: String,
+                default: ''
+            },
+            rating: {
+                type: String,
+                default: ''
+            },
+            reviews: {
+                type: String,
+                default: ''
+            },
+            price: {
+                type: String,
+                default: ''
+            },
+            id: {
+                type: Number,
+                default: null
+            }
+        },
         data() {
             return {
                 item: {
-                    description: this.description,
+                    name: this.name,
                     rating: this.rating,
                     reviews: this.reviews,
-                    price: this.price
-                }
+                    price: this.price,
+                },
+                isPopupShown: false,
             }
         },
         computed: {
@@ -42,24 +71,39 @@
             },
             favouriteClicked() {
                 this.addItemToFavourite(this.item)
+            },
+            showPopup() {
+                this.isPopupShown = !this.isPopupShown;
+                console.log(this.isPopupShown)
             }
         },
     }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
     .sx-item {
         font-weight: 400;
         display: flex;
         flex-direction: column;
         align-items: center;
+        cursor: pointer;
+        width: 50%;
+        margin: 0 auto;
 
-        &-description {
-            font-weight: 700;
-        }
-
-        &-favourite:hover {
+        &-content {
+            font-weight: 400;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             cursor: pointer;
+
+            &-description {
+                font-weight: 700;
+            }
+
+            &-favourite:hover {
+                cursor: pointer;
+            }
         }
     }
 </style>
