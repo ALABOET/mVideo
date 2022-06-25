@@ -36,9 +36,7 @@ export default {
 
 <style scoped lang="scss">
 .sx-profilelogo {
-  &-name {
   text-align: center;
-  }
 
   #Layer_1 {
     &:hover {

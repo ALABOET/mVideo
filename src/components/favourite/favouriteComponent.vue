@@ -6,7 +6,7 @@
         </div>
         <div v-else class="sx-favourite-list">
             <div v-for="(elem, index) in favouriteProducts" class="sx-favourite-list-item" :key="elem">
-                {{elem.description}} <span class="sx-favourite-list-item-delete" @click="deleteElement(index)">X</span>
+                {{elem.name}} <span class="sx-favourite-list-item-delete" @click="deleteElement(index)">X</span>
             </div>
             <button @click="moveItemFromFavouriteToCart">Добавить товар{{favouriteProducts.length === 1? '' : 'ы'}} в
                 корзину

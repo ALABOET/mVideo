@@ -5,6 +5,7 @@ export default createStore({
         return {
             itemsInCart: 0,
             isCartModalShown: false,
+            isProductBuyModalShown: false,
             themeMode: 'Light',
             addedProducts: [],
             favouriteProducts: [],
@@ -70,6 +71,8 @@ export default createStore({
         completePurchase(state) {
             state.addedProducts.length = 0;
             state.itemsInCart = 0;
+            state.isProductBuyModalShown = true;
+            setTimeout(() => state.isProductBuyModalShown = false, 5000)
         },
         setTheme(state) {
             if (state.themeMode === 'Dark') {

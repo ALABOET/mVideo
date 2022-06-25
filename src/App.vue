@@ -2,7 +2,6 @@
   <div class="sx-app"
        :class="{'sx-app-dark': isThemeDark, 'sx-app-blur': isLoginModalOpen}">
     <HeaderComponent/>
-    <added-to-cart-component/>
     <div class="sx-app-content">
       <router-view/>
     </div>
@@ -12,7 +11,6 @@
 
 <script>
 import HeaderComponent from "@/components/header/headerComponent";
-import AddedToCartComponent from "@/components/modals/addedToCartComponent";
 import {mapState, mapMutations} from "vuex";
 import LoginComponent from "@/components/authorization/loginComponent";
 
@@ -20,14 +18,13 @@ export default {
   name: 'App',
   components: {
     LoginComponent,
-    AddedToCartComponent,
     HeaderComponent
   },
   methods: {
     ...mapMutations(['setProductNumber'])
   },
   computed: {
-    ...mapState(['themeMode', 'itemsInCart', 'userName', 'isLoginModalOpen']),
+    ...mapState(['themeMode', 'itemsInCart', 'userName', 'isLoginModalOpen', 'isCartModalShown']),
     isThemeDark() {
       return this.themeMode === 'Dark'
     }

@@ -1,5 +1,7 @@
 <template>
   <div class="sx-header">
+    <popup-window text="Товар успешно добавлен в корзину" :condition="isCartModalShown"/>
+    <popup-window text="Покупка успешно совершена" :condition="isProductBuyModalShown"/>
     <router-link to="/">
       <mvideo-logo/>
     </router-link>
@@ -35,16 +37,18 @@ import {mapState} from 'vuex'
 import ThemeToggleSwitch from "@/components/header/themeToggleSwitch";
 import router from "@/router";
 import MenuMobileComponent from "@/components/catalogMenu/menuMobileComponent";
+import PopupWindow from "@/components/modals/popupWindow";
 
 export default {
   name: "headerComponent",
   components: {
+    PopupWindow,
     MenuMobileComponent,
     ThemeToggleSwitch,
     StepLogoComponent, SearchComponent, CatalogComponent, mvideoLogo
   },
   computed: {
-    ...mapState(['itemsInCart', 'userName', 'themeMode', 'addedProducts', 'favouriteProducts'])
+    ...mapState(['itemsInCart', 'userName', 'themeMode', 'addedProducts', 'favouriteProducts' , 'isCartModalShown', 'isProductBuyModalShown'])
   },
   methods: {
     pushToCart() {
