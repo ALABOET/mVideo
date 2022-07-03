@@ -24,23 +24,23 @@
         </div>
         <div>
             <div v-if="!hasSortingStarted" class="sx-catalog-list-item">
-                <div class="sx-catalog-list-item-elem" v-for="item in items" :key="item">
+                <div class="sx-catalog-list-item-elem" v-for="item in items" :key="item.id">
                     <item-component :name="item.name" :rating="item.rating" :price="item.price"
-                                    :reviews="item.reviews" :id="item.id"/>
+                                    :reviews="item.reviews" :id="item.id" :is-data-shown="showAllData"/>
                 </div>
             </div>
             <div v-if="hasSortingStarted && isSortedByPrice" class="sx-catalog-list-item">
-                <div class="sx-catalog-list-item-elem" v-for="sortedItem in sortedByPriceItems" :key="sortedItem">
+                <div class="sx-catalog-list-item-elem" v-for="sortedItem in sortedByPriceItems" :key="sortedItem.id">
                     <item-component :name="sortedItem.name" :rating="sortedItem.rating"
                                     :price="sortedItem.price"
-                                    :reviews="sortedItem.reviews" :id="sortedItem.id"/>
+                                    :reviews="sortedItem.reviews" :id="sortedItem.id" :is-data-shown="showAllData"/>
                 </div>
             </div>
             <div v-if="hasSortingStarted && isSortedByRating" class="sx-catalog-list-item">
-                <div class="sx-catalog-list-item-elem" v-for="sortedItem in sortedByRatingItems" :key="sortedItem">
+                <div class="sx-catalog-list-item-elem" v-for="sortedItem in sortedByRatingItems" :key="sortedItem.id">
                     <item-component :name="sortedItem.name" :rating="sortedItem.rating"
                                     :price="sortedItem.price"
-                                    :reviews="sortedItem.reviews" :id="sortedItem.id"/>
+                                    :reviews="sortedItem.reviews" :id="sortedItem.id" :is-data-shown="showAllData"/>
                 </div>
             </div>
         </div>
@@ -52,14 +52,16 @@
     import ItemComponent from "@/components/catalog/itemComponent";
     import LoaderComponent from "@/components/loaderComponent";
     import SliderShowComponent from "@/components/catalog/sliderShowComponent";
+    import {mapState} from 'vuex';
 
     export default {
         name: "catalogListComponent",
-        components: { SliderShowComponent, LoaderComponent, ItemComponent},
+        components: {SliderShowComponent, LoaderComponent, ItemComponent},
         mounted() {
             setTimeout(() => this.isLoaded = true, 1000)
         },
         computed: {
+            ...mapState(['items']),
             getRandomPic() {
                 return Math.floor(Math.random() * this.carouselPhotos.length);
             }
@@ -73,18 +75,7 @@
                 isSortedByPrice: false,
                 isSortedByRating: false,
                 isSortingShown: false,
-                items: [
-                    {name: 'iPhone 13 Max 256GB', rating: '4.9', reviews: '22 отзыва', price: '79900', id: 1},
-                    {name: 'iPhone 12 64GB', rating: '4.5', reviews: '7 отзывов', price: '45990', id: 2},
-                    {name: 'iPhone 11 128GB', rating: '4.6', reviews: '4 отзыва', price: '25290', id: 3},
-                    {name: 'Samsung A12 32GB', rating: '3.9', reviews: '4 отзыва', price: '13990', id: 4},
-                    {name: 'Samsung A14 64GB', rating: '3.9', reviews: '1 отзыв', price: '33700', id: 5},
-                    {name: 'Samsung Galaxy 2 8GB', rating: '2.5', reviews: '124 отзыв', price: '323990', id: 6},
-                    {name: 'POCO 10X', rating: '4', reviews: '11 отзыв', price: '14990', id: 7},
-                    {name: 'Realme 8', rating: '4.75', reviews: '3 отзыва', price: '14000', id: 8},
-                    {name: 'Fly IQ 440 Energie', rating: '4.95', reviews: '1 отзыв', price: '8990', id: 9},
-                    {name: 'Fly IQ 441 Radiant', rating: '5', reviews: '10 отзывов', price: '9990', id: 10},
-                    {name: 'Honor 8X', rating: '4.3', reviews: '14 отзывов', price: '17890', id: 11}],
+                showAllData: false,
                 sortedByPriceItems: [],
                 sortedByRatingItems: [],
                 carouselPhotos: [
@@ -113,6 +104,7 @@
         },
         methods: {
             sortByPrice() {
+                this.showAllData = true;
                 this.hasSortingStarted = true;
                 this.isSortedByPrice = true;
                 this.isSortedByRating = false;
@@ -130,6 +122,7 @@
 
             },
             sortByRating() {
+                this.showAllData = true;
                 this.isSortedByRating = true;
                 this.hasSortingStarted = true;
                 this.isSortedByPrice = false;

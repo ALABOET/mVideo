@@ -1,6 +1,5 @@
 <template>
   <div class="sx-menu">
-    <div class="sx-menu-username">{{ isLoggedIn ? userName : '' }}</div>
     <div class="sx-menu-icon" @click="menuToggled =! menuToggled">
       <burger-menu-logo v-if="!menuToggled"/>
       <burger-menu-close-component v-if="menuToggled"/>
@@ -8,7 +7,7 @@
     <div class="sx-menu-mobile" v-if="menuToggled">
       <ul class="sx-menu-mobile-list" @click="menuToggled = !menuToggled">
         <li @click="$router.push('/catalog')">Каталог</li>
-        <li @click="checkIfProfileAccessible">Личный кабинет</li>
+        <li @click="checkIfProfileAccessible">{{isLoggedIn? userName : 'Личный кабинет'}}</li>
         <li>Избранное</li>
         <li @click="toggleLoginModal" v-if="this.$route.path !== '/login'">{{ isLoggedIn ? 'Выйти' : 'Авторизация' }}
         </li>
