@@ -22,6 +22,10 @@
                 type: Boolean,
                 default: false,
             },
+            position: {
+                type: String,
+                default: '',
+            },
         },
     }
 </script>
@@ -50,8 +54,7 @@
             }
         }
     }
-
-    .fade-leave-to {
+    .fade-leave-to { //todo - вынести анимации в отдельный файл
         opacity: 0;
         transform: translateY(-50px);
     }

@@ -10,7 +10,7 @@
         d="M24.4,119.4C35,108.8,49,103,64,103s29,5.8,39.6,16.4l5.7-5.7C97.2,101.7,81.1,95,64,95s-33.2,6.7-45.3,18.7L24.4,119.4z"/></g>
   </svg>
     <div class="sx-profilelogo-name">
-      {{ isLoggedIn ? userName : '' }}
+      {{ isLoggedIn ? userName : 'Личный кабинет' }}
     </div>
   </div>
 </template>

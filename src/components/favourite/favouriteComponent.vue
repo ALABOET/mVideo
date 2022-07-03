@@ -28,7 +28,7 @@
             ...mapMutations(['clearItemsInFavourite', 'moveItemFromFavouriteToCart', 'deleteFavouriteElement']),
             deleteElement(item) {
                 this.deleteFavouriteElement(item)
-            }
+            },
         }
     }
 </script>

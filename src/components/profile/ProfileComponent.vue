@@ -1,7 +1,8 @@
 <template>
   <div class="sx-profile">
     <div class="sx-profile-header">
-      Личный кабинет пользователя: <strong>{{ userName }}</strong> <br>
+      Личный кабинет<br>
+      Имя пользователя: <strong>{{ userName }}</strong> <br>
       Активная почта: <strong> {{ userMail }} </strong>
     </div>
     <div>Недавние покупки:</div>

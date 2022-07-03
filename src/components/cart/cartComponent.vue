@@ -48,6 +48,7 @@
             purchase() {
                 if (this.isLoggedIn) {
                     this.completePurchase();
+                    this.$router.push('/catalog')
                 } else {
                     this.isWarningShown = true;
                 }
@@ -60,7 +61,6 @@
     .sx-cart-component {
         font-size: 20px;
         width: 600px;
-        margin: 0 auto;
 
         &-empty, &-full {
             a {

@@ -2,6 +2,7 @@
   <div class="sx-header">
     <popup-window text="Товар успешно добавлен в корзину" :condition="isCartModalShown"/>
     <popup-window text="Покупка успешно совершена" :condition="isProductBuyModalShown"/>
+    <popup-window text="Товар успешно добавлен в Избранное" :condition="isFavouriteModalShown"/>
     <router-link to="/">
       <mvideo-logo/>
     </router-link>
@@ -48,7 +49,7 @@ export default {
     StepLogoComponent, SearchComponent, CatalogComponent, mvideoLogo
   },
   computed: {
-    ...mapState(['itemsInCart', 'userName', 'themeMode', 'addedProducts', 'favouriteProducts' , 'isCartModalShown', 'isProductBuyModalShown'])
+    ...mapState(['itemsInCart', 'userName', 'themeMode', 'addedProducts', 'favouriteProducts' , 'isCartModalShown', 'isProductBuyModalShown', 'isFavouriteModalShown'])
   },
   methods: {
     pushToCart() {
