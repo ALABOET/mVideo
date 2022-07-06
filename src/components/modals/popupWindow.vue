@@ -44,13 +44,13 @@
             text-align: center;
             height: 70px;
             border-radius: 20px;
-            background: green;
+            background-color: rgba(242, 38, 19, .7);
             padding: 10px;
             margin: auto;
 
             &-text {
                 font-size: 20px;
-                text-align: center;
+                text-align: left;
             }
         }
     }

@@ -87,7 +87,7 @@ export default {
   top: 0px;
   box-shadow: 0 0 5px black;
   margin: 0 10px;
-  border-radius: 10px;
+  border-radius: 0 0 10px 10px;
   display: flex;
   justify-content: center;
   border-bottom: 1px solid grey;
@@ -101,6 +101,7 @@ export default {
   &-logo {
     display: flex;
     margin-left: 30px;
+    align-items: center;
 
     &-logos {
       display: flex;
