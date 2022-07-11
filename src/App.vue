@@ -34,7 +34,7 @@
             if (this.userName) {
                 return;
             }
-            this.$router.push('/catalog')
+            this.$router.push('/')
         }
     }
 </script>

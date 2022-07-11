@@ -86,4 +86,21 @@
     }
     .zoom-enter-to {
     }
+
+
+    .slide-leave-to {
+        opacity: 0;
+    }
+    .slide-enter-from {
+        opacity: 0;
+    }
+    .slide-enter-active {
+        transition: all 2s ease;
+    }
+    .slide-leave-active {
+        transition: all 2s ease;
+    }
+    .slide-enter-to {
+        opacity: 1;
+    }
 </style>
