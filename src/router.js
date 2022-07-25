@@ -5,6 +5,7 @@ import cartComponent from "@/components/cart/cartComponent";
 import profileComponent from "@/components/profile/ProfileComponent";
 import favouriteComponent from "@/components/favourite/favouriteComponent";
 import productPage from "@/components/productPage/productPage";
+import cartDataComponent from "@/components/cart/cartDataComponent";
 
 export default createRouter({
     history: createWebHistory(),
@@ -32,6 +33,10 @@ export default createRouter({
         {
             path: '/item/:id',
             component: productPage
+        },
+        {
+            path: '/purchase',
+            component: cartDataComponent
         },
     ]
 })
