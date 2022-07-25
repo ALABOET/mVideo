@@ -1,6 +1,6 @@
 <template>
     <teleport to="#modal">
-        <div class="sx-cart-modal" v-if="condition">
+        <div class="sx-cart-modal">
             <div class="sx-cart-modal-content">
                 <div class="sx-cart-modal-content-text">
                     {{text}}
@@ -12,15 +12,11 @@
 
 <script>
     export default {
-        name: "popupWindow",
+        name: "popupComponent",
         props: {
             text: {
                 type: String,
                 default: ''
-            },
-            condition: {
-                type: Boolean,
-                default: false,
             },
             position: {
                 type: String,
@@ -50,7 +46,7 @@
 
             &-text {
                 font-size: 20px;
-                text-align: left;
+                text-align: center;
             }
         }
     }

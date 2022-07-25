@@ -5,19 +5,17 @@
         <div class="sx-app-content">
             <router-view/>
         </div>
-        <login-component v-if="isLoginModalOpen"/>
     </div>
 </template>
 
 <script>
     import HeaderComponent from "@/components/header/headerComponent";
     import {mapState, mapMutations} from "vuex";
-    import LoginComponent from "@/components/authorization/loginComponent";
 
     export default {
         name: 'App',
         components: {
-            LoginComponent,
+
             HeaderComponent
         },
         methods: {

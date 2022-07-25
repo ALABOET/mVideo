@@ -75,7 +75,6 @@
                 if (this.checkIfPasswordsMatch) {
                     this.setUserName(this.login);
                     this.setUserMail(this.mail);
-                    this.$router.push('/catalog')
                     this.toggleModalLoginState();
                 }
             },
