@@ -4,13 +4,13 @@
     <span style="color: red">Сумма заказа - {{ sumOfMoney }} рублей</span>
     <div>1. Укажите личные данные пользователя</div>
     <span>ФИО </span>
-    <input type="text">
+    <input type="text" v-model="name">
     <br/>
     <span>Дата рождения </span>
-    <input type="date">
+    <input type="date" v-model="birthday">
     <br/>
     <span>Адрес доставки </span>
-    <input type="text">
+    <input type="text" v-model="address">
     <br/>
     <div>2. Как Вам лучше оформить заказ?</div>
     <div class="sx-cart-data-options">
@@ -18,7 +18,9 @@
         <way-to-order-component @onWayClicked="selectOption" :order-type="elem.wayName"
                                 :order-description="elem.wayDescription"
                                 :radio-value="elem.radioValue"
-                                :class="{'sx-cart-data-on':elem.radioValue === this.text}"/>
+                                :class="{'sx-cart-data-on':elem.radioValue === this.text}"
+                                :is-selectable="elem.wayName === 'В рассрочку'"
+                                :used-array="bankArray"/>
       </div>
     </div>
     <div>3. Списание бонусов</div>
@@ -36,6 +38,8 @@
         <div>Итоговая сумма: {{ sumOfMoney - usedBonuses }} рублей</div>
       </div>
     </div>
+    <div>4. Завершение покупки</div>
+    <button :class="{'sx-cart-data-bonus-scale__disabled':!isInfoPresent}" @click="finishBuying">Купить товары</button>
   </div>
 </template>
 
@@ -47,7 +51,7 @@ export default {
   name: "cartDataComponent",
   components: {WayToOrderComponent},
   methods: {
-    ...mapMutations(['setUserBonuses']),
+    ...mapMutations(['setUserBonuses', 'itemsBought']),
     selectOption(value) {
       this.text = value
     },
@@ -58,17 +62,28 @@ export default {
       this.setUserBonuses(this.usedBonuses)
       this.useBonuses = false;
       this.showFinal = true;
+    },
+    finishBuying() {
+      this.$router.push('/catalog');
+      this.itemsBought();
     }
   },
   computed: {
-    ...mapState(['totalBonuses', 'sumOfMoney'])
+    ...mapState(['totalBonuses', 'sumOfMoney']),
+    isInfoPresent() {
+      return this.name !== '' && this.birthday !== null && this.address !== ''
+    }
   },
   data() {
     return {
+      name: '',
+      birthday: null,
+      address: '',
       text: '',
       useBonuses: false,
       usedBonuses: 0,
       showFinal: false,
+      bankArray: ['МТС', 'Сбербанк', 'Россельхозбанк', 'Тинькофф'],
       waysToOrder: [{
         wayName: 'Онлайн', wayDescription: 'Оплатить покупки можно только пластиковой картой.\n' +
             'При использовании VPN сервисов могут наблюдаться проблемы.', radioValue: 'online'
