@@ -8,6 +8,7 @@ export default createStore({
             isCartModalShown: false,
             isProductBuyModalShown: false,
             isFavouriteModalShown: false,
+            isSuccessfullyBought: false,
             sumOfMoney: 0,
             themeMode: 'Light',
             addedProducts: [],
@@ -41,6 +42,11 @@ export default createStore({
         },
         toggleLoggedState(state) {
             state.isLoggedIn = !state.isLoggedIn
+        },
+
+        itemsBought(state) {
+          state.isSuccessfullyBought = true;
+          setTimeout(() => state.isSuccessfullyBought = false, 5000)
         },
         addItemToCart(state, payload) {
             state.itemsInCart++;
@@ -99,14 +105,10 @@ export default createStore({
             setTimeout(() => state.isProductBuyModalShown = false, 5000)
         },
         setTheme(state) {
-            if (state.themeMode === 'Dark') {
-                state.themeMode = 'Light'
-                return;
-            }
-            if (state.themeMode === 'Light') {
-                state.themeMode = 'Dark'
-                return;
-            }
+            if (state.themeMode === 'Dark') return state.themeMode = 'Light'
+
+            if (state.themeMode === 'Light') state.themeMode = 'Dark'
+
         },
         setProductNumber(state) {
             state.itemsInCart = localStorage.getItem('productsNumber')

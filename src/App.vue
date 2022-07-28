@@ -38,6 +38,10 @@
 </script>
 
 <style lang="scss">
+button
+{
+
+}
     .sx-app {
         min-height: 100vh;
 

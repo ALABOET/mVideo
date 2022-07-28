@@ -5,7 +5,6 @@
       Имя пользователя: <strong>{{ userName }}</strong> <br>
       Активная почта: <strong> {{ userMail }} </strong>
     </div>
-    <div>Недавние покупки:</div>
   </div>
 </template>
 

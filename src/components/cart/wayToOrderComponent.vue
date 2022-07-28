@@ -1,8 +1,14 @@
 <template>
   <div class="sx-order">
-    <input class="sx-order-input" @click="wayClicked" type="radio" name="order" :value="radioValue">
+    <input class="sx-order-input" @click="$emit('onWayClicked', this.radioValue)" type="radio" name="order" :value="radioValue">
     <div class="sx-order-type">{{ orderType }}</div>
-    <div class="sx-order-description">{{ orderDescription }}</div>
+    <div class="sx-order-description">{{ orderDescription }}
+      <div v-if="isSelectable">
+        <select>
+            <option v-for="elem in usedArray" :key="elem" :value="elem">{{ elem }}</option>
+        </select>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -22,19 +28,15 @@ export default {
       type: String,
       default: ''
     },
+    isSelectable: {
+      type: Boolean,
+      default: false,
+    },
+    usedArray: {
+      type: Array,
+      default: () => []
+    },
   },
-  data() {
-    return {
-      isOn: false,
-    }
-  },
-  methods: {
-    wayClicked() {
-      this.isOn = !this.isOn
-      this.$emit('onWayClicked', this.radioValue)
-      console.log(this.radioValue)
-    }
-  }
 }
 </script>
 
