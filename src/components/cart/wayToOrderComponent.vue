@@ -42,7 +42,7 @@ export default {
 
 <style lang="scss">
 .sx-order {
-  width: 260px;
+  width: 240px;
   height: 170px;
   border: 1px solid black;
   border-radius: 4px;

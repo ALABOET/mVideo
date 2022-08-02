@@ -6,12 +6,15 @@
         </div>
         <div v-else class="sx-favourite-list">
             <div v-for="(elem, index) in favouriteProducts" class="sx-favourite-list-item" :key="elem">
-                {{elem.name}} <span class="sx-favourite-list-item-delete" @click="deleteElement(index)">X</span>
+                {{elem.name}} <span class="sx-favourite-list-item-delete" @click="deleteElement(index)">удалить</span>
             </div>
-            <button @click="moveItemFromFavouriteToCart">Добавить товар{{favouriteProducts.length === 1? '' : 'ы'}} в
-                корзину
-            </button>
-            <button @click="clearItemsInFavourite">Очистить Избранное</button>
+            <div class="sx-favourite-list-buttons">
+                <button @click="moveItemFromFavouriteToCart">Добавить товар{{favouriteProducts.length === 1? '' : 'ы'}}
+                    в
+                    корзину
+                </button>
+                <button @click="clearItemsInFavourite">Очистить Избранное</button>
+            </div>
         </div>
     </div>
 </template>
@@ -36,10 +39,16 @@
 <style lang="scss">
     .sx-favourite {
         &-list {
+            &-buttons {
+                display: flex;
+                gap: 15px;
+            }
+
             &-item {
                 &-delete {
                     &:hover {
                         cursor: pointer;
+                        color: red;
                     }
                 }
             }

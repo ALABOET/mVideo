@@ -38,10 +38,6 @@
 </script>
 
 <style lang="scss">
-button
-{
-
-}
     .sx-app {
         min-height: 100vh;
 
@@ -74,7 +70,6 @@ button
 
     @media screen and (max-width: 650px) {
         .sx-app {
-
             &-content {
                 width: 80%;
             }

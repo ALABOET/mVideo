@@ -98,7 +98,7 @@ export default {
   flex-direction: column;
   align-items: center;
   cursor: pointer;
-  width: 50%;
+  width: 51%;
   margin: 0 auto;
   &-favourite {
     color: red;

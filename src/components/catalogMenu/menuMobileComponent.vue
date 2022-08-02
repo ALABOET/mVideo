@@ -7,7 +7,7 @@
     <div class="sx-menu-mobile" v-if="menuToggled">
       <ul class="sx-menu-mobile-list" @click="menuToggled = !menuToggled">
         <li @click="$router.push('/catalog')">Каталог</li>
-        <li @click="checkIfProfileAccessible">{{isLoggedIn? userName : 'Личный кабинет'}}</li>
+        <li @click="checkIfProfileAccessible" :style="isLoggedIn? 'color: red' : ''">{{isLoggedIn? userName : 'Личный кабинет'}}</li>
         <li>Избранное</li>
         <li @click="toggleLoginModal" v-if="this.$route.path !== '/login'">{{ isLoggedIn ? 'Выйти' : 'Авторизация' }}
         </li>
