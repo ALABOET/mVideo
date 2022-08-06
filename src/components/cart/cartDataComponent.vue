@@ -41,7 +41,9 @@
             </div>
         </div>
         <div>4. Завершение покупки</div>
-        <button :class="{'sx-cart-data-bonus-scale__disabled':!isInfoPresent}" @click="finishBuying">{{isPaymentShown? 'Купить товары' : 'Перейти в банк'}}</button>
+        <button :class="{'sx-cart-data-bonus-scale__disabled':!isInfoPresent}" @click="finishBuying">{{isPaymentShown?
+            'Купить товары' : 'Перейти в банк'}}
+        </button>
     </div>
 </template>
 
@@ -67,12 +69,31 @@
                 this.showFinal = true;
             },
             finishBuying() {
-                this.$router.push('/catalog');
-                this.itemsBought();
+                if (this.isPaymentShown) {
+                    this.$router.push('/catalog');
+                    this.itemsBought();
+                } else {
+                    switch (this.chosenBank) {
+                        case "МТС":
+                            window.open("https://www.mtsbank.ru/", "_blank") ;
+                            break;
+                        case "Россельхозбанк":
+                            window.open("https://www.rshb.ru/", "_blank") ;
+                            break;
+                        case "Тинькофф":
+                            window.open("https://www.tinkoff.ru/", "_blank") ;
+                            break;
+                        case "Сбербанк":
+                            window.open("https://www.sberbank.ru/ru/person", "_blank") ;
+                            break;
+                    }
+                    this.$router.push('/catalog');
+                    this.itemsBought();
+                }
             }
         },
         computed: {
-            ...mapState(['totalBonuses', 'sumOfMoney']),
+            ...mapState(['totalBonuses', 'sumOfMoney', 'chosenBank']),
             isInfoPresent() {
                 return this.name !== '' && this.birthday !== null && this.address !== '' && this.text !== ''
             },
