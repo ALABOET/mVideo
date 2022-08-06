@@ -13,6 +13,7 @@ export default createStore({
             themeMode: 'Light',
             addedProducts: [],
             favouriteProducts: [],
+            chosenBank: 'default',
             items: [
                 {name: 'iPhone 13 Max 256GB', rating: '4.9', reviews: '22 отзыва', price: 79900, id: 1},
                 {name: 'iPhone 12 64GB', rating: '4.5', reviews: '7 отзывов', price: 45990, id: 2},
@@ -47,6 +48,9 @@ export default createStore({
         itemsBought(state) {
           state.isSuccessfullyBought = true;
           setTimeout(() => state.isSuccessfullyBought = false, 5000)
+        },
+        changeActiveBank(state, payload) {
+            state.chosenBank = payload
         },
         addItemToCart(state, payload) {
             state.itemsInCart++;
