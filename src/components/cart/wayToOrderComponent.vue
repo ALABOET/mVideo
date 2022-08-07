@@ -5,10 +5,8 @@
         <div class="sx-order-type">{{ orderType }}</div>
         <div class="sx-order-description">{{ orderDescription }}
             <div v-if="isSelectable">
-                {{selectedBank}} //
-                {{chosenBank}} выбранный банк
                 <select v-model="selectedBank">
-                    <option @click="arra" v-for="elem in usedArray" :key="elem" :value="elem">{{ elem }}</option>
+                    <option v-for="(elem, index) in usedArray" :key="elem" :value="elem">{{++index}}. {{ elem }}</option>
                 </select>
             </div>
         </div>
@@ -22,7 +20,7 @@
         name: "wayToOrderComponent",
         data() {
             return {
-                selectedBank: ''
+                selectedBank: this.usedArray[0]
             }
         },
         updated() {

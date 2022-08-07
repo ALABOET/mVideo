@@ -46,8 +46,8 @@ export default createStore({
         },
 
         itemsBought(state) {
-          state.isSuccessfullyBought = true;
-          setTimeout(() => state.isSuccessfullyBought = false, 5000)
+            state.isSuccessfullyBought = true;
+            setTimeout(() => state.isSuccessfullyBought = false, 5000)
         },
         changeActiveBank(state, payload) {
             state.chosenBank = payload
@@ -104,9 +104,11 @@ export default createStore({
                 state.sumOfMoney += elem.price
             }
             state.addedProducts.length = 0;
-            state.itemsInCart = 0;
             state.isProductBuyModalShown = true;
             setTimeout(() => state.isProductBuyModalShown = false, 5000)
+        },
+        nullifySumOfMoney(state) {
+            state.sumOfMoney = 0;
         },
         setTheme(state) {
             if (state.themeMode === 'Dark') return state.themeMode = 'Light'

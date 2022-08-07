@@ -55,10 +55,9 @@
         name: "cartDataComponent",
         components: {WayToOrderComponent},
         methods: {
-            ...mapMutations(['setUserBonuses', 'itemsBought']),
+            ...mapMutations(['setUserBonuses', 'itemsBought', 'nullifySumOfMoney']),
             selectOption(value) {
                 this.text = value
-                console.log(value)
             },
             useBonus() {
                 this.useBonuses = !this.useBonuses;
@@ -69,27 +68,12 @@
                 this.showFinal = true;
             },
             finishBuying() {
-                if (this.isPaymentShown) {
-                    this.$router.push('/catalog');
-                    this.itemsBought();
-                } else {
-                    switch (this.chosenBank) {
-                        case "МТС":
-                            window.open("https://www.mtsbank.ru/", "_blank") ;
-                            break;
-                        case "Россельхозбанк":
-                            window.open("https://www.rshb.ru/", "_blank") ;
-                            break;
-                        case "Тинькофф":
-                            window.open("https://www.tinkoff.ru/", "_blank") ;
-                            break;
-                        case "Сбербанк":
-                            window.open("https://www.sberbank.ru/ru/person", "_blank") ;
-                            break;
-                    }
-                    this.$router.push('/catalog');
-                    this.itemsBought();
+                if (!this.isPaymentShown) {
+                    window.open(`https://www.${this.chosenBank === 'МТС'? 'mtsbank': this.chosenBank === 'Россельхозбанк' ? 'rshb' : this.chosenBank === 'Тинькофф' ? 'tinkoff' : 'sberbank'}.ru/`);
                 }
+                this.$router.push('/catalog');
+                this.nullifySumOfMoney();
+                this.itemsBought();
             }
         },
         computed: {
