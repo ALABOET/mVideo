@@ -99,7 +99,14 @@ export default {
   align-items: center;
   cursor: pointer;
   width: 51%;
-  margin: 0 auto;
+  margin: 10px auto;
+  border: 1px solid black;
+  border-radius: 5px;
+
+  &:hover {
+    box-shadow: 0 0 10px deepskyblue;
+  }
+
   &-favourite {
     color: red;
 
