@@ -83,7 +83,7 @@
             },
             isPaymentShown() {
                 return this.text === 'online' || this.text === 'offline' || this.text === ''
-            }
+            },
         },
         data() {
             return {
